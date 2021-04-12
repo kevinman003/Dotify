@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        binding.tvTitle.text = "All Star fdasjlbhjlkdsfkjlhgfdklhsjglfdslkgfdskjl"
+        binding.tvTitle.text = "All Star"
         binding.tvArtist.text = "Smash Mouth"
         binding.tvPlays.text = "${randomNum.toString()} plays"
         binding.tvUser.text = "Shrek Lover"
