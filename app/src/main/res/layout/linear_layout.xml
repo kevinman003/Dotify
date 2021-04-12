@@ -34,7 +34,7 @@
         android:text="TITLE"
         android:textSize="32sp"
         android:layout_gravity="center"
-        android:maxLines="2"
+        android:maxLines="1"
         android:ellipsize="end"
         />
     <TextView
