@@ -10,13 +10,13 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
-import com.example.dotify.databinding.ActivityMainBinding
+import com.example.dotify.databinding.PlayerActivityBinding
 import kotlin.random.Random
 
 private const val SONG_KEY = "song"
 
 fun navigateToPlayerActivity(context: Context, song: Song) {
-    val intent = Intent(context, MainActivity::class.java)
+    val intent = Intent(context, PlayerActivity::class.java)
     val bundle = Bundle().apply {
         putParcelable(SONG_KEY, song)
     }
@@ -25,8 +25,8 @@ fun navigateToPlayerActivity(context: Context, song: Song) {
     context.startActivity( intent )
 }
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class PlayerActivity : AppCompatActivity() {
+    private lateinit var binding: PlayerActivityBinding
     private lateinit var btnChangeUser: Button
     private lateinit var ibPrev: ImageButton
     private lateinit var ibPlay: ImageButton
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = PlayerActivityBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
