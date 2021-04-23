@@ -1,11 +1,18 @@
 package com.example.dotify
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
 import com.example.dotify.databinding.ActivitySongListBinding
+
+fun navigateToSongListActivity(context: Context) {
+    val intent = Intent(context, SongListActivity::class.java)
+    context.startActivity(intent)
+}
 
 class SongListActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySongListBinding

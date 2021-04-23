@@ -6,32 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".PlayerActivity"
     android:padding="@dimen/padding">
-    <TextView
-        android:id="@+id/tvUser"
-        android:text="USER"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/btnChangeUser"
-        app:layout_constraintBottom_toBottomOf="@id/btnChangeUser"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-    <EditText
-        android:id="@+id/etChangeUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/btnChangeUser"
-        app:layout_constraintBottom_toBottomOf="@id/btnChangeUser"
-        app:layout_constraintStart_toStartOf="parent"
-        android:ems="10"
-        />
-    <Button
-        android:id="@+id/btnChangeUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CHANGE USER"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+<ImageButton
+    android:id="@+id/ibReturn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:src="@drawable/ic_back_arrow"
+    android:layout_marginTop="12dp"
+    android:layout_marginStart="12dp"
+    android:background="@android:color/transparent"
+    android:foreground="?selectableItemBackground"/>
     <ImageView
         android:id="@+id/ivAlbumCover"
         android:layout_width="0dp"
@@ -40,7 +25,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnChangeUser"
+        app:layout_constraintTop_toBottomOf="@+id/ibReturn"
         app:layout_constraintDimensionRatio="1:1"
         />
     <TextView

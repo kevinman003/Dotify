@@ -40,13 +40,6 @@ class PlayerActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.tvUser.text = "Shrek Lover"
-        binding.etChangeUser.visibility = View.GONE
-
-        binding.btnChangeUser.setOnClickListener {
-            changeUser()
-        }
-
         binding.ibPrev.setOnClickListener {
             onPrev()
         }
@@ -57,6 +50,9 @@ class PlayerActivity : AppCompatActivity() {
             onNext()
         }
         with(binding) {
+            ibReturn.setOnClickListener {
+                navigateToSongListActivity(this@PlayerActivity)
+            }
             val song: Song? = intent.getParcelableExtra<Song>(SONG_KEY)
             tvTitle.text = song?.title
             tvArtist.text = song?.artist
@@ -64,27 +60,6 @@ class PlayerActivity : AppCompatActivity() {
             if (song != null) {
                 ivAlbumCover.setImageResource(song?.largeImageID)
             }
-        }
-    }
-
-    fun changeUser() {
-        if (changingUser) {
-            val user = binding.etChangeUser.text.toString()
-            if (!user.isNullOrBlank()) {
-                changingUser = false
-                binding.etChangeUser.visibility = View.GONE
-                binding.tvUser.visibility = View.VISIBLE
-                binding.tvUser.text = user
-                binding.btnChangeUser.text = "Change User"
-            } else {
-                Toast.makeText(this, "User cannot be empty", Toast.LENGTH_SHORT).show()
-            }
-
-        } else {
-            changingUser = true
-            binding.tvUser.visibility = View.GONE
-            binding.etChangeUser.visibility = View.VISIBLE
-            binding.btnChangeUser.text = "Apply"
         }
     }
 
