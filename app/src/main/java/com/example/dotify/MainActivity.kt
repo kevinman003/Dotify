@@ -1,5 +1,7 @@
 package com.example.dotify
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +9,21 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import com.ericchee.songdataprovider.Song
 import com.example.dotify.databinding.ActivityMainBinding
 import kotlin.random.Random
+
+private const val SONG_KEY = "song"
+
+fun navigateToPlayerActivity(context: Context, song: Song) {
+    val intent = Intent(context, MainActivity::class.java)
+    val bundle = Bundle().apply {
+        putParcelable(SONG_KEY, song)
+    }
+
+    intent.putExtras(bundle)
+    context.startActivity( intent )
+}
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -24,9 +39,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        binding.tvTitle.text = "All Star"
-        binding.tvArtist.text = "Smash Mouth"
-        binding.tvPlays.text = "${randomNum.toString()} plays"
+
         binding.tvUser.text = "Shrek Lover"
         binding.etChangeUser.visibility = View.GONE
 
@@ -42,6 +55,15 @@ class MainActivity : AppCompatActivity() {
         }
         binding.ibNext.setOnClickListener{
             onNext()
+        }
+        with(binding) {
+            val song: Song? = intent.getParcelableExtra<Song>(SONG_KEY)
+            tvTitle.text = song?.title
+            tvArtist.text = song?.artist
+            tvPlays.text = "${randomNum.toString()} plays"
+            if (song != null) {
+                ivAlbumCover.setImageResource(song?.largeImageID)
+            }
         }
     }
 
