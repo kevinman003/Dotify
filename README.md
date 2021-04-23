@@ -7,4 +7,4 @@ This is an app to display music information and involves simple interactions. Th
 I have completed extra credit #1 (back arrow on PlayerActivity) 
 
 ## Screenshots
-<img src="./hw2_screenshot.PNG" alt="Screenshot of the app" height="500" />
+<img src="./hw2_screenshot.png" alt="Screenshot of the app" height="500" />
