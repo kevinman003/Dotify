@@ -14,6 +14,7 @@ import com.example.dotify.databinding.PlayerActivityBinding
 import kotlin.random.Random
 
 private const val SONG_KEY = "song"
+const val PLAYS_KEY = "PLAYS_KEY"
 
 fun navigateToPlayerActivity(context: Context, song: Song) {
     val intent = Intent(context, PlayerActivity::class.java)
@@ -31,7 +32,7 @@ class PlayerActivity : AppCompatActivity() {
     private lateinit var ibPrev: ImageButton
     private lateinit var ibPlay: ImageButton
     private lateinit var ibNext: ImageButton
-    var randomNum = Random.nextInt(10000, 100000)
+    var numPlays = Random.nextInt(10000, 100000)
     private var changingUser = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +40,11 @@ class PlayerActivity : AppCompatActivity() {
         binding = PlayerActivityBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        if (savedInstanceState != null) {
+            numPlays = savedInstanceState.getInt(PLAYS_KEY)
+        }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.ibPrev.setOnClickListener {
             onPrev()
@@ -50,13 +56,10 @@ class PlayerActivity : AppCompatActivity() {
             onNext()
         }
         with(binding) {
-            ibReturn.setOnClickListener {
-                navigateToSongListActivity(this@PlayerActivity)
-            }
             val song: Song? = intent.getParcelableExtra<Song>(SONG_KEY)
             tvTitle.text = song?.title
             tvArtist.text = song?.artist
-            tvPlays.text = "${randomNum.toString()} plays"
+            tvPlays.text = "${numPlays.toString()} plays"
             if (song != null) {
                 ivAlbumCover.setImageResource(song?.largeImageID)
             }
@@ -68,11 +71,21 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     fun onPlay() {
-        randomNum += 1
-        binding.tvPlays.text = "${randomNum.toString()} plays"
+        numPlays += 1
+        binding.tvPlays.text = "${numPlays.toString()} plays"
     }
 
     fun onNext() {
         Toast.makeText(this, "Skipping to next track", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return super.onSupportNavigateUp()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(PLAYS_KEY, numPlays)
+        super.onSaveInstanceState(outState)
     }
 }

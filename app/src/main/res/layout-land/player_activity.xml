@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding"
+    tools:context=".PlayerActivity">
+
+    <ImageView
+        android:id="@+id/ivAlbumCover"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/all_star"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="TITLE"
+        android:textSize="32sp"
+        app:layout_constraintTop_toTopOf="@+id/ivAlbumCover"
+        app:layout_constraintStart_toEndOf="@id/ivAlbumCover"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ARTIST"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        app:layout_constraintStart_toEndOf="@id/ivAlbumCover"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPlays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PLAYS"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+        app:layout_constraintStart_toEndOf="@id/ivAlbumCover"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ibPrev"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@android:color/transparent"
+        android:foreground="?selectableItemBackground"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_previous"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlays"
+        app:layout_constraintEnd_toStartOf="@+id/ibPlay" />
+
+    <ImageButton
+        android:id="@+id/ibPlay"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@android:color/transparent"
+        android:foreground="?selectableItemBackground"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_play"
+        app:layout_constraintStart_toEndOf="@id/ivAlbumCover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlays"
+        />
+
+    <ImageButton
+        android:id="@+id/ibNext"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@android:color/transparent"
+        android:foreground="?selectableItemBackground"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_next"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlays"
+        app:layout_constraintStart_toEndOf="@+id/ibPlay"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

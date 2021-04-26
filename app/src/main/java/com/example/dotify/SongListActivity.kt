@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
@@ -17,6 +18,7 @@ fun navigateToSongListActivity(context: Context) {
 class SongListActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySongListBinding
     private lateinit var selectedSong: Song
+    private var isSelected: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +26,7 @@ class SongListActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         val songs = SongDataProvider.getAllSongs()
-
+        title = "All Songs"
         with(binding) {
             // initially sets the mini player text and selected song to the first song in the player
             selectedSong = songs[0]
@@ -34,9 +36,15 @@ class SongListActivity : AppCompatActivity() {
             adapter.onSongClickListener = {song: Song ->
                 tvMiniText.text = "${song.title} - ${song.artist}"
                 selectedSong = song
+                isSelected = true
             }
             btnShuffle.setOnClickListener {
                 adapter.updateSongs(songs.toMutableList().shuffled())
+            }
+            if(isSelected) {
+                clMiniPlayer.visibility  = View.VISIBLE
+            } else {
+                clMiniPlayer.visibility = View.GONE
             }
             clMiniPlayer.setOnClickListener {
                 navigateToPlayerActivity(this@SongListActivity, selectedSong)
