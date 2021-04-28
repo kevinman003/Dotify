@@ -16,6 +16,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        app:layout_constraintTop_toTopOf="@id/ivAlbumCover"
+        app:layout_constraintEnd_toEndOf="parent"/>
     <TextView
         android:id="@+id/tvTitle"
         android:layout_marginTop="20dp"
@@ -25,7 +32,7 @@
         android:maxLines="1"
         android:text="TITLE"
         android:textSize="32sp"
-        app:layout_constraintTop_toTopOf="@+id/ivAlbumCover"
+        app:layout_constraintTop_toTopOf="@+id/btnSettings"
         app:layout_constraintStart_toEndOf="@id/ivAlbumCover"
         app:layout_constraintEnd_toEndOf="parent"/>
 

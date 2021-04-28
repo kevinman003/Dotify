@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
@@ -17,8 +18,7 @@ fun navigateToSongListActivity(context: Context) {
 
 class SongListActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySongListBinding
-    private lateinit var selectedSong: Song
-    private var isSelected: Boolean = false
+    private var selectedSong: Song? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,28 +27,34 @@ class SongListActivity : AppCompatActivity() {
         setContentView(view)
         val songs = SongDataProvider.getAllSongs()
         title = "All Songs"
+        selectedSong = savedInstanceState?.getParcelable(SONG_KEY)
         with(binding) {
             // initially sets the mini player text and selected song to the first song in the player
-            selectedSong = songs[0]
-            tvMiniText.text = "${songs[0].title} - ${songs[0].artist}"
             val adapter = SongListAdapter(songs)
             rvSongs.adapter = adapter
             adapter.onSongClickListener = {song: Song ->
                 tvMiniText.text = "${song.title} - ${song.artist}"
                 selectedSong = song
-                isSelected = true
+                clMiniPlayer.visibility  = View.VISIBLE
             }
             btnShuffle.setOnClickListener {
                 adapter.updateSongs(songs.toMutableList().shuffled())
             }
-            if(isSelected) {
-                clMiniPlayer.visibility  = View.VISIBLE
-            } else {
+
+            if (selectedSong == null) {
                 clMiniPlayer.visibility = View.GONE
+            } else {
+                tvMiniText.text = "${selectedSong?.title} - ${selectedSong?.artist}"
+                clMiniPlayer.visibility = View.VISIBLE
             }
             clMiniPlayer.setOnClickListener {
-                navigateToPlayerActivity(this@SongListActivity, selectedSong)
+                navigateToPlayerActivity(this@SongListActivity, selectedSong!!)
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putParcelable(SONG_KEY, selectedSong)
+        super.onSaveInstanceState(outState)
     }
 }

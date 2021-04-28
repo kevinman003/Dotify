@@ -13,7 +13,7 @@ import com.ericchee.songdataprovider.Song
 import com.example.dotify.databinding.PlayerActivityBinding
 import kotlin.random.Random
 
-private const val SONG_KEY = "song"
+const val SONG_KEY = "song"
 const val PLAYS_KEY = "PLAYS_KEY"
 
 fun navigateToPlayerActivity(context: Context, song: Song) {
@@ -60,6 +60,9 @@ class PlayerActivity : AppCompatActivity() {
             tvTitle.text = song?.title
             tvArtist.text = song?.artist
             tvPlays.text = "${numPlays.toString()} plays"
+            btnSettings.setOnClickListener {
+                navigateToSettingsActivity(this@PlayerActivity, song, numPlays)
+            }
             if (song != null) {
                 ivAlbumCover.setImageResource(song?.largeImageID)
             }
