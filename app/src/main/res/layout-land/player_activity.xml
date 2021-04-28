@@ -32,7 +32,7 @@
         android:maxLines="1"
         android:text="TITLE"
         android:textSize="32sp"
-        app:layout_constraintTop_toTopOf="@+id/btnSettings"
+        app:layout_constraintTop_toBottomOf="@+id/btnSettings"
         app:layout_constraintStart_toEndOf="@id/ivAlbumCover"
         app:layout_constraintEnd_toEndOf="parent"/>
 
