@@ -9,7 +9,9 @@ I attempted #1 (up/back arrow on fragments)
 ## Screenshots
 Landscape and portrait modes
 
-<img src="./port_land.jpg" alt="Screenshot of the app" height="500" />
+<img src="./hw3.jpg" alt="Screenshot of the app" height="500" />
 
 Fragments 
-<img src="./hw3.jpg" alt="Screenshot of the app" height="500" />
+
+<img src="./port_land.jpg" alt="Screenshot of the app" height="500" />
+
