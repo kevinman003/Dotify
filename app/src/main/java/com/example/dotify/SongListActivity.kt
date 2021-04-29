@@ -41,14 +41,17 @@ class SongListActivity : AppCompatActivity() {
                 adapter.updateSongs(songs.toMutableList().shuffled())
             }
 
-            if (selectedSong == null) {
+            val imSelectedSong = selectedSong
+            if (imSelectedSong == null) {
                 clMiniPlayer.visibility = View.GONE
             } else {
-                tvMiniText.text = "${selectedSong?.title} - ${selectedSong?.artist}"
+                tvMiniText.text = "${imSelectedSong?.title} - ${imSelectedSong?.artist}"
                 clMiniPlayer.visibility = View.VISIBLE
             }
             clMiniPlayer.setOnClickListener {
-                navigateToPlayerActivity(this@SongListActivity, selectedSong!!)
+                if (imSelectedSong != null) {
+                    navigateToPlayerActivity(this@SongListActivity, imSelectedSong)
+                }
             }
         }
     }

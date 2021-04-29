@@ -33,7 +33,6 @@ class SettingsFragment : Fragment() {
             }
             btnStats.setOnClickListener {
 //                navController.navigate(R.id.statisticsFragment)
-                Log.i("kev", "btnStats $safeArgs ${safeArgs.plays}")
                 navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToStatisticsFragment(song = safeArgs.song, plays = safeArgs.plays))
             }
         }
