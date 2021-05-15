@@ -16,12 +16,12 @@ import kotlin.random.Random
 const val SONG_KEY = "song"
 const val PLAYS_KEY = "PLAYS_KEY"
 
-fun navigateToPlayerActivity(context: Context, song: Song) {
+fun navigateToPlayerActivity(context: Context, song: Song?) {
     val intent = Intent(context, PlayerActivity::class.java)
     val bundle = Bundle().apply {
         putParcelable(SONG_KEY, song)
     }
-
+    Log.i("fdsa", "In navigation")
     intent.putExtras(bundle)
     context.startActivity( intent )
 }

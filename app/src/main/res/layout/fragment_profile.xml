@@ -9,7 +9,7 @@
 
     <!-- TODO: Update blank fragment layout -->
 <ImageView
-    android:id="@+id/ivShrek"
+    android:id="@+id/ivPfp"
     android:layout_width="0dp"
     android:layout_height="300dp"
     app:layout_constraintDimensionRatio="1:1"
@@ -19,42 +19,33 @@
     app:layout_constraintEnd_toEndOf="parent"
     />
 <TextView
-    android:id="@+id/tvShrek"
+    android:id="@+id/tvUsername"
     android:text="Shrek"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:layout_constraintTop_toBottomOf="@id/ivShrek"
-    app:layout_constraintStart_toStartOf="@+id/ivShrek"
-    app:layout_constraintEnd_toEndOf="@id/ivShrek"
+    app:layout_constraintTop_toBottomOf="@id/ivPfp"
+    app:layout_constraintStart_toStartOf="@+id/ivPfp"
+    app:layout_constraintEnd_toEndOf="@id/ivPfp"
     android:textSize="30sp"
     android:layout_marginTop="0dp"
     />
 
     <TextView
-        android:id="@+id/tvAge"
+        android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Age: 18+"
-        app:layout_constraintTop_toBottomOf="@+id/tvShrek"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsername"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="20sp"
         />
     <TextView
-        android:id="@+id/tvJoined"
+        android:id="@+id/tvPlatform"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Joined: 4/19/2020"
-        app:layout_constraintTop_toBottomOf="@+id/tvAge"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="20sp"
         />
-   <TextView
-       android:id="@+id/tvEmail"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       app:layout_constraintTop_toBottomOf="@+id/tvJoined"
-       app:layout_constraintStart_toStartOf="parent"
-       android:text="Email: shreklover68@gmail.com"
-       android:textSize="20sp"
-       />
 </androidx.constraintlayout.widget.ConstraintLayout>

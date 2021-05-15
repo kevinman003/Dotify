@@ -5,7 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import com.example.dotify.databinding.FragmentProfileBinding
+import com.example.dotify.repository.DataRepository
+import com.google.gson.Gson
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.launch
+import model.User
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,12 +24,28 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ProfileFragment : Fragment() {
+    private val gson: Gson = Gson()
+    private lateinit var dotifyApp: DotifyApplication
+    private lateinit var dataRepository: DataRepository
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentProfileBinding.inflate(inflater)
+        dotifyApp = this.activity?.applicationContext as DotifyApplication
+        dataRepository = dotifyApp.dataRepository
+
+        lifecycleScope.launch {
+            val user = dataRepository.getUser()
+            with(binding) {
+                tvUsername.text = user.username
+                tvName.text = "${user.firstName} ${user.lastName}"
+                tvPlatform.text = "Platform: ${user.platform}"
+                Picasso.get().load(user.profilePicURL).into(ivPfp)
+            }
+        }
+
         return binding.root
     }
 }

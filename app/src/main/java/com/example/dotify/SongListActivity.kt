@@ -18,7 +18,8 @@ fun navigateToSongListActivity(context: Context) {
 
 class SongListActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySongListBinding
-    private var selectedSong: Song? = null
+    private lateinit var dotifyApp: DotifyApplication
+//    private var selectedSong: Song? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,9 @@ class SongListActivity : AppCompatActivity() {
         setContentView(view)
         val songs = SongDataProvider.getAllSongs()
         title = "All Songs"
-        selectedSong = savedInstanceState?.getParcelable(SONG_KEY)
+//        selectedSong = savedInstanceState?.getParcelable(SONG_KEY)
+        dotifyApp = this.applicationContext as DotifyApplication
+        var selectedSong = dotifyApp.selectedSong
         with(binding) {
             // initially sets the mini player text and selected song to the first song in the player
             val adapter = SongListAdapter(songs)
@@ -41,23 +44,24 @@ class SongListActivity : AppCompatActivity() {
                 adapter.updateSongs(songs.toMutableList().shuffled())
             }
 
-            val imSelectedSong = selectedSong
-            if (imSelectedSong == null) {
+//            var selectedSong = selectedSong
+            if (selectedSong == null) {
                 clMiniPlayer.visibility = View.GONE
             } else {
-                tvMiniText.text = "${imSelectedSong?.title} - ${imSelectedSong?.artist}"
+                tvMiniText.text = "${selectedSong?.title} - ${selectedSong?.artist}"
                 clMiniPlayer.visibility = View.VISIBLE
             }
             clMiniPlayer.setOnClickListener {
-                if (imSelectedSong != null) {
-                    navigateToPlayerActivity(this@SongListActivity, imSelectedSong)
+                if (selectedSong != null) {
+                    navigateToPlayerActivity(this@SongListActivity, selectedSong)
                 }
             }
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putParcelable(SONG_KEY, selectedSong)
-        super.onSaveInstanceState(outState)
-    }
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        dotifyApp.selectedSong = selectedSong
+//        outState.putParcelable(SONG_KEY, selectedSong)
+//        super.onSaveInstanceState(outState)
+//    }
 }
