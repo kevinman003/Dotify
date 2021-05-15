@@ -1,10 +1,7 @@
 
 # Dotify by Kevin Liang
 
-This is an app to display music information and involves simple interactions
-
-## Extra credit
-I have completed extra credit #1 (no empty user text), and #5 (using linear and constraint layout)
+This is an app to display music information and involves simple interactions. This branch of the code implements an HTTP request using Retrofit to https://raw.githubusercontent.com/echeeUW/codesnippets/master/user_info.json for user information and uses Picasso to show the user's image. 
 
 ## Screenshots
-<img src="./hw1_screenshot.PNG" alt="Screenshot of the app" height="500" />
+![image](https://user-images.githubusercontent.com/24513192/118347133-a13c4180-b4f5-11eb-9cb9-95bcc3b26ba8.png)
