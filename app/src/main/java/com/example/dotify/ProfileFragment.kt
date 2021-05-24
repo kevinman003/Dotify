@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.dotify.databinding.FragmentProfileBinding
 import com.example.dotify.repository.DataRepository
@@ -37,13 +38,22 @@ class ProfileFragment : Fragment() {
         dataRepository = dotifyApp.dataRepository
 
         lifecycleScope.launch {
-            val user = dataRepository.getUser()
-            with(binding) {
-                tvUsername.text = user.username
-                tvName.text = "${user.firstName} ${user.lastName}"
-                tvPlatform.text = "Platform: ${user.platform}"
-                Picasso.get().load(user.profilePicURL).into(ivPfp)
+            runCatching {
+                val user = dataRepository.getUser()
+                with(binding) {
+                    tvUsername.text = user.username
+                    tvName.text = "${user.firstName} ${user.lastName}"
+                    tvPlatform.text = "Platform: ${user.platform}"
+                    Picasso.get().load(user.profilePicURL).into(ivPfp)
+                }
+            }.onFailure {
+                Toast.makeText(
+                    activity,
+                    "Error fetcching user data",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
+
         }
 
         return binding.root

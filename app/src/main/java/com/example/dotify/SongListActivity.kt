@@ -19,7 +19,7 @@ fun navigateToSongListActivity(context: Context) {
 class SongListActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySongListBinding
     private lateinit var dotifyApp: DotifyApplication
-//    private var selectedSong: Song? = null
+    private val songNotifyManager by lazy { dotifyApp.songNotifyManager }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +41,7 @@ class SongListActivity : AppCompatActivity() {
                 clMiniPlayer.visibility  = View.VISIBLE
             }
             btnShuffle.setOnClickListener {
+                Log.i("fdsa", "badfgdsafsad")
                 adapter.updateSongs(songs.toMutableList().shuffled())
             }
 
@@ -55,6 +56,11 @@ class SongListActivity : AppCompatActivity() {
                 if (selectedSong != null) {
                     navigateToPlayerActivity(this@SongListActivity, selectedSong)
                 }
+            }
+
+            scNotify.setOnClickListener {
+                Log.i("fdsa", "nvcxnxcv")
+                songNotifyManager.getSong()
             }
         }
     }

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Dotify</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="channel_description">Channel to notify a new song</string>
+    <string name="channel_name">New Song Channel</string>
 </resources>

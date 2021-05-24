@@ -21,7 +21,6 @@ fun navigateToPlayerActivity(context: Context, song: Song?) {
     val bundle = Bundle().apply {
         putParcelable(SONG_KEY, song)
     }
-    Log.i("fdsa", "In navigation")
     intent.putExtras(bundle)
     context.startActivity( intent )
 }
