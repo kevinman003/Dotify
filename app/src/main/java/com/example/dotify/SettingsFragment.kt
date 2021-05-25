@@ -16,6 +16,9 @@ class SettingsFragment : Fragment() {
 
     private val navController by lazy { findNavController() }
     private val safeArgs: SettingsFragmentArgs by navArgs()
+    private val dotifyApp by lazy { activity?.applicationContext as DotifyApplication}
+
+    private val songNotifyManager by lazy { dotifyApp.songNotifyManager }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +37,14 @@ class SettingsFragment : Fragment() {
             btnStats.setOnClickListener {
 //                navController.navigate(R.id.statisticsFragment)
                 navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToStatisticsFragment(song = safeArgs.song, plays = safeArgs.plays))
+            }
+
+            scNotify.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    songNotifyManager.getSong()
+                } else {
+                    songNotifyManager.stopGetSong()
+                }
             }
         }
         return binding.root

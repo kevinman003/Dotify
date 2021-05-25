@@ -33,4 +33,22 @@
         app:layout_constraintTop_toBottomOf="@+id/btnStats"
         />
 
+    <TextView
+        android:id="@+id/tvNotifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnAbout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Enable Notifications"
+        android:textSize="20sp"
+        />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/scNotify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/tvNotifications"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNotifications"
+        app:layout_constraintStart_toEndOf="@+id/tvNotifications"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

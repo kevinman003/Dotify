@@ -19,7 +19,6 @@ fun navigateToSongListActivity(context: Context) {
 class SongListActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySongListBinding
     private lateinit var dotifyApp: DotifyApplication
-    private val songNotifyManager by lazy { dotifyApp.songNotifyManager }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,10 +57,6 @@ class SongListActivity : AppCompatActivity() {
                 }
             }
 
-            scNotify.setOnClickListener {
-                Log.i("fdsa", "nvcxnxcv")
-                songNotifyManager.getSong()
-            }
         }
     }
 
